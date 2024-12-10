@@ -16,7 +16,7 @@
 - Перейдите на сайт по адресу [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 Пример запуска:
-![gif](https://github.com/VASILIYKAS/Lesson-1.-Selling-Elite-Wine/raw/master/images/terminal.gif)
+![gif](https://github.com/VASILIYKAS/Lesson-1.-Selling-Elite-Wine/raw/master/images/run_terminal_gif.gif)
 
 ## Цели проекта
 
