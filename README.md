@@ -5,6 +5,11 @@
 ## Запуск
 
 - Скачайте код
+- Для запуска должен быть установлен python 3.12
+- Рекомендуется создать виртуальное окружение. Для этого нужно выполнить такую команду: 
+`python -m venv venv`.
+- Затем нужно установить все необходимые библиотеки, сделать это можно
+командой: `pip install -r requirements.txt`
 - Скрипт запускается из командной строки или терминала IDE. 
 - Перед запуском убедитесь что вы находитесь в папке с файлом main.py. 
 - Для перехода используйте команду `cd`. 
@@ -16,7 +21,7 @@
 - Перейдите на сайт по адресу [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 Пример запуска:
-![gif](https://github.com/VASILIYKAS/Lesson-1.-Selling-Elite-Wine/raw/master/images/terminal.gif)
+![gif](https://github.com/VASILIYKAS/Lesson-1.-Selling-Elite-Wine/raw/master/images/run_terminal_gif.gif)
 
 ## Цели проекта
 
