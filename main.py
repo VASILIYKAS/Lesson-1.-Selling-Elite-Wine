@@ -28,6 +28,8 @@ def main():
 
     parser = argparse.ArgumentParser(description='Программа для работы с файлами excel')
     parser.add_argument('--file_path', default='wine.xlsx', help='Путь к файлу')
+    parser.add_argument('--template_path', default='template.html', help='Путь к шаблону HTML')
+    parser.add_argument('--output_file', default='index.html', help='Путь куда сохраняется файл')
     args = parser.parse_args()
 
     new_excel = pandas.read_excel(args.file_path, keep_default_na=False)
@@ -52,7 +54,7 @@ def main():
 
     categories = sorted(wines.keys())
 
-    template = env.get_template('template.html')
+    template = env.get_template(args.template_path)
 
     rendered_page = template.render(
         wines=wines,
@@ -60,7 +62,7 @@ def main():
         date_time=f'Уже {how_old} {get_year_word(how_old)} с вами'
     )
 
-    with open('index.html', 'w', encoding="utf8") as file:
+    with open(args.output_file, 'w', encoding="utf8") as file:
         file.write(rendered_page)
 
     server = HTTPServer(('127.0.0.1', 8000), SimpleHTTPRequestHandler)
