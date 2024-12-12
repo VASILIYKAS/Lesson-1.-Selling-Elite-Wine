@@ -33,14 +33,14 @@ def main():
     args = parser.parse_args()
 
     excel_import = pandas.read_excel(args.file_path, keep_default_na=False)
-    excel_import_dict = excel_import.to_dict(orient='records')
+    excel_import_records = excel_import.to_dict(orient='records')
 
     wines = defaultdict(list)
 
-    for wine in excel_import_dict:
+    for wine in excel_import_records:
         category = wine['Категория']
 
-        wine_dict = {
+        wine_info = {
             'Картинка': wine['Картинка'],
             'Категория': category,
             'Название': wine['Название'],
@@ -50,7 +50,7 @@ def main():
 
         }
 
-        wines[category].append(wine_dict)
+        wines[category].append(wine_info)
 
     categories = sorted(wines.keys())
 
