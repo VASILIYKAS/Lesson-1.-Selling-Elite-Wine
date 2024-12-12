@@ -24,7 +24,7 @@ def main():
         autoescape=select_autoescape(['html', 'xml'])
     )
 
-    how_old = datetime.now().year - 1920
+    years_since_1920 = datetime.now().year - 1920
 
     parser = argparse.ArgumentParser(description='Программа для работы с файлами excel')
     parser.add_argument('--file_path', default='wine.xlsx', help='Путь к файлу')
@@ -32,21 +32,21 @@ def main():
     parser.add_argument('--output_file', default='index.html', help='Путь куда сохраняется файл')
     args = parser.parse_args()
 
-    new_excel = pandas.read_excel(args.file_path, keep_default_na=False)
-    new_excel_dict = new_excel.to_dict(orient='records')
+    excel_import = pandas.read_excel(args.file_path, keep_default_na=False)
+    excel_import_dict = excel_import.to_dict(orient='records')
 
     wines = defaultdict(list)
 
-    for i in new_excel_dict:
-        category = i['Категория']
+    for wine in excel_import_dict:
+        category = wine['Категория']
 
         wine_dict = {
-            'Картинка': i['Картинка'],
+            'Картинка': wine['Картинка'],
             'Категория': category,
-            'Название': i['Название'],
-            'Сорт': i['Сорт'],
-            'Цена': i['Цена'],
-            'Акция': i['Акция']
+            'Название': wine['Название'],
+            'Сорт': wine['Сорт'],
+            'Цена': wine['Цена'],
+            'Акция': wine['Акция']
 
         }
 
@@ -59,7 +59,7 @@ def main():
     rendered_page = template.render(
         wines=wines,
         categories=categories,
-        date_time=f'Уже {how_old} {get_year_word(how_old)} с вами'
+        date_time=f'Уже {years_since_1920} {get_year_word(years_since_1920)} с вами'
     )
 
     with open(args.output_file, 'w', encoding="utf8") as file:
