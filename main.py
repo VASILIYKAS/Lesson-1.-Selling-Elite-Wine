@@ -52,15 +52,15 @@ def main():
 
         wines[category].append(wine_info)
 
-    categories = sorted(wines.keys())
-
     template = env.get_template(args.template_path)
 
-    rendered_page = template.render(
-        wines=wines,
-        categories=categories,
-        date_time=f'Уже {years_since_1920} {get_year_word(years_since_1920)} с вами'
-    )
+    context = {
+        'wines': wines,
+        'categories': sorted(wines.keys()),
+        'date_time': f'Уже {years_since_1920} {get_year_word(years_since_1920)} с вами'
+    }
+
+    rendered_page = template.render(context)
 
     with open(args.output_file, 'w', encoding="utf8") as file:
         file.write(rendered_page)
