@@ -1,4 +1,5 @@
 import pandas
+import argparse
 
 from datetime import datetime
 
@@ -25,7 +26,11 @@ def main():
 
     how_old = datetime.now().year - 1920
 
-    new_excel = pandas.read_excel('wine.xlsx', keep_default_na=False)
+    parser = argparse.ArgumentParser(description='Программа для работы с файлами excel')
+    parser.add_argument('--file_path', default='wine.xlsx', help='Путь к файлу')
+    args = parser.parse_args()
+
+    new_excel = pandas.read_excel(args.file_path, keep_default_na=False)
     new_excel_dict = new_excel.to_dict(orient='records')
 
     wines = defaultdict(list)
