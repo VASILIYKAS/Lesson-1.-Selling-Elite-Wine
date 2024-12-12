@@ -9,6 +9,8 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from collections import defaultdict
 
 
+FOUNDATION_YEAR = 1920
+
 def get_year_word(year):
     if year % 10 == 1 and year % 100 != 11:
         return 'год'
@@ -24,7 +26,7 @@ def main():
         autoescape=select_autoescape(['html', 'xml'])
     )
 
-    years_since_1920 = datetime.now().year - 1920
+    years_since_1920 = datetime.now().year - FOUNDATION_YEAR
 
     parser = argparse.ArgumentParser(description='Программа для работы с файлами excel')
     parser.add_argument('--file_path', default='wine.xlsx', help='Путь к файлу')
