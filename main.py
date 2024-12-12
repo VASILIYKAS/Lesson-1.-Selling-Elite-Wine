@@ -8,7 +8,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from collections import defaultdict
 
 
-def years_words(year):
+def get_year_word(year):
     if year % 10 == 1 and year % 100 != 11:
         return 'год'
     elif year % 10 in [2, 3, 4] and year % 100 not in [12, 13, 14]:
@@ -52,7 +52,7 @@ def main():
     rendered_page = template.render(
         wines=wines,
         categories=categories,
-        date_time=f'Уже {how_old} {years_words(how_old)} с вами'
+        date_time=f'Уже {how_old} {get_year_word(how_old)} с вами'
     )
 
     with open('index.html', 'w', encoding="utf8") as file:
